@@ -1,6 +1,5 @@
 {
   "nombre": "Martin",
   "edad": 24,
-  "ciudadFavorita": "Melbourne",
-  "hobby": "correr"
+  "ciudadFavorita": "Melbourne"
 }
