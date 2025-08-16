@@ -20,7 +20,7 @@ const filePath = './series.json';
 
 //Argumentos que se pasan en la línea de comandos
 const args = process.argv.slice(2);
-const comando = args[0]; //el primer argumento va a hacer el comando a ejecutar
+const comando = args[0]; //el primer argumento va a ser el comando a ejecutar
 const nombreSerie = args[1]; // el segundo argumento es el nombre del libro
 const cantidadTemporadas = args[2]; //el tercer argumento es la cantidad de temporadas de la serie
 

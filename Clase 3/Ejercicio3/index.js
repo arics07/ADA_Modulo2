@@ -10,7 +10,4 @@ Pistas:
 • Eliminar una tarea se puede hacer por su ID.
 */
 
-const fs = require('fs');
-
-const filePath = './tareas.json';
-
+// --> resuelto como ejemplo

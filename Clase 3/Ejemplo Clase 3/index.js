@@ -11,26 +11,26 @@ const filePath = './tareas.json';
 
 //Argumentos que se pasan en la línea de comandos
 const args = process.argv.slice(2);
-const comando = args[0]; //el primer argumento va a hacer el comando a ejecutar
+const comando = args[0]; //el primer argumento va a ser el comando a ejecutar
 const descripcion = args.slice(1).join(' '); //el resto de los argumentos son la descripcion de la tarea
 const id = args[1]; //el segundo argumento que se pasa es el id
 
 //Función para leer el archivo JSON y que nos devuelva las tareas guardadas
 const leerTareas = () => {
     const contenido = fs.readFileSync(filePath, 'utf-8'); //lee el archivo tareas.json
-    return JSON.parse(contenido); //convierte el contenido del json en un array de tareas
+    return JSON.parse(contenido); //convierte el contenido del json en un array de tareas y lo retorna
 };
 
 //Función para escribir tareas en el archivo JSON
 const escribirTareas = (tareas) => {
-    const json = JSON.stringify(tareas); //convierte el array de tareas en formato JSON
+    const json = JSON.stringify(tareas); //convierte el array de tareas en formato JSON:  array JS --> stringify --> JSON
     fs.writeFileSync(filePath, json, 'utf-8'); //guarda el json en el archivo
 };
 
 //Función para agregar una nueva tarea
 const agregarTarea = (descripcion) => {
     const tareas = leerTareas(); //lee las tareas guardadas en el archivo json y las guarda en una variable
-    tareas.push({id: tareas.length+1, descripcion, completada: false});
+    tareas.push({id: tareas.length+1, descripcion, completada: false}); //agrega un atarea al array
     //pasa las tareas al archivo json
     escribirTareas(tareas);
     console.log('Tarea agregada con éxito! ', descripcion);

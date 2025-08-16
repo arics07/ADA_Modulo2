@@ -19,10 +19,10 @@ const filePath = './libros.json';
 
 //Argumentos que se pasan en la línea de comandos
 const args = process.argv.slice(2);
-const comando = args[0]; //el primer argumento va a hacer el comando a ejecutar
+const comando = args[0]; //el primer argumento va a ser el comando a ejecutar
 const libro = args[1]; // el segundo argumento es el nombre del libro
 
-//defino la función leerLibro
+//defino la función leerLibros
 const leerLibros = () => {
     if (!fs.existsSync(filePath)) {
         console.log("El archivo no existe")
