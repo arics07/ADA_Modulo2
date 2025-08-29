@@ -1,6 +1,6 @@
 //SERVIDOR TCP
 //importamos el módulo 'net' de Node.js
-const net = require('net');
+const net = require('net'); //se usa para crear servidores y clientes
 
 //Manejo de eventos
 const server = net.createServer((socket) => {
@@ -47,6 +47,7 @@ server.on('connection', (socket) => {
 
 //Poner al servidor a escuchar en el puerto específico
 const PORT = 3000;
+
 server.listen(PORT, () => {
     console.log("Escuchando desde el puerto ", PORT);
 });

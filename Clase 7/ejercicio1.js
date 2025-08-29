@@ -10,3 +10,29 @@ Requisitos:
 • Usa el método socket.write() para enviar los datos de vuelta al cliente.
 • Usa los eventos end y close para manejar la desconexión del cliente.
 */
+
+const net = require('net');
+
+const server = net.createServer((socket) => {
+    console.log("Un cliente se ha conectado");
+
+    socket.on('data', (data) => {
+        console.log(`Datos recibidos: ${data.toString()}`);
+        socket.write(data);
+    });
+
+    socket.on('end', () => {
+        console.log("El cliente ha cerrado la conexión.");
+    });
+
+    socket.on('close', () => {
+        console.log("Se ha cerrado la conexión");
+    });
+
+});
+
+const PORT = 3000;
+
+server.listen(PORT, () => {
+    console.log(`Servidor escuchando desde el puerto ${PORT}`);
+});
