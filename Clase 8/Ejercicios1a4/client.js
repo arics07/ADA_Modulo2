@@ -12,7 +12,7 @@ Pistas
 • Maneja el evento 'connect' para saber cuándo la conexión está lista.
 • Usa client.write() para enviar el mensaje.
 • Captura los datos con el evento 'data'.
-
+------------------------------------------------------------------------------
 Ejercicio 2: Implementar un timeout en la conexión
 
 Consigna
@@ -23,7 +23,7 @@ Modifica el cliente del Ejercicio 1 para que:
 Pistas
 • Usa client.setTimeout() con 5000 milisegundos.
 • Cuando el timeout ocurra, usa client.end() para cerrar la conexión.
-
+------------------------------------------------------------------------------
 Ejercicio 3: Pausar y reanudar la recepción de datos
 
 Consigna
@@ -35,7 +35,7 @@ Crea un cliente TCP que:
 Pistas
 • Usa client.pause() y client.resume().
 • Un setTimeout() puede ayudarte a reanudar después de 3 segundos.
-
+------------------------------------------------------------------------------
 Ejercicio 4: Manejo de errores en la conexión
 
 Consigna
@@ -47,67 +47,6 @@ Pistas
 • Usa client.on('error', callback) para manejar errores.
 • Usa client.on('close', callback) para detectar cierres.
 
-Ejercicio 5: Detectar cuando el servidor cierra la conexión
-
-Consigna
-Crea un cliente que:
-1. Se conecte y envíe "¿Sigues ahí, servidor?".
-2. Cuando el servidor cierre la conexión, muestre " Servidor cerró la conexión".
-
-Pistas
-• El evento 'end' se activa cuando el servidor finaliza la conexión.
-
-Ejercicio 6: Cliente interactivo con la usuaria
-
-Consigna
-Crea un cliente donde la usuaria pueda escribir mensajes en la consola y enviarlos al servidor.
-• Después de cada mensaje, la usuaria puede escribir otro.
-• Si escribe "salir", el cliente se desconecta.
-
-Pistas
-• Usa readline para capturar texto de la usuaria.
-• Si el mensaje es "salir", cierra la conexión con client.end().
-
-Ejercicio 7: Cliente que destruye el socket al fallar
-
-Consigna
-Crea un cliente que:
-1. Se conecte al servidor.
-2. Si hay un error en la conexión, use client.destroy() y muestre "Conexión destruida".
-
-Pistas
-• client.destroy() libera los recursos del socket de inmediato.
-
-Ejercicio 8: Cliente con unref/ref para control de procesos
-
-Consigna
-Crea un cliente que:
-1. Use client.unref() para permitir que Node.js termine si no hay otras tareas.
-2. Luego, después de 5 segundos, use client.ref() para evitar que el proceso termine.
-
-Pistas
-• unref() hace que el socket no impida que Node.js termine.
-• ref() lo vuelve a mantener activo.
-
-Ejercicio 9: Cliente que reconecta automáticamente
-
-Consigna
-Crea un cliente que:
-1. Si la conexión falla, reintente conectarse cada 3 segundos hasta que tenga éxito.
-
-Pistas
-• Usa setTimeout() para intentar de nuevo tras 3 segundos.
-• Llama a net.createConnection() dentro del reintento.
-
-Ejercicio 10: Cliente que detecta pérdida de conexión
-
-Consigna
-Crea un cliente que:
-1. Si deja de recibir datos durante 10 segundos, muestre "No hay datos del servidor" y cierre la conexión.
-
-Pistas
-• Usa setTimeout() que se reinicie con cada mensaje recibido.
-• Si pasan 10 segundos sin mensajes, cierra con client.end().
 */
 
 const net = require('net');
@@ -115,11 +54,10 @@ const net = require('net');
 const PORT = 5000;
 const HOST = 'localhost';
 
+//ejercicio 1
 const client = net.createConnection({port: PORT, host: HOST}, () => {
-    console.log("Conexión con el servidor establecida.");
-    
+    console.log("Conexión con el servidor establecida.");    
     client.write("¡Hola, servidor!");
-
 });
 
 client.on('data', (data) => {
@@ -130,10 +68,29 @@ client.on('end', () => {
     console.log("El servidor cerró la conexión.");
 });
 
-client.on('close', () => {
-    console.log("Conexión cerrada.");
+//ejercicio 2
+client.setTimeout(5000, () => {
+    console.log('Tiempo de espera agotado.');
+    client.end();
 });
 
+//ejercicio 3
+client.on('data', (data) => {
+    console.log('Recibido:', data.toString());
+    client.pause(); //pausa la recepción de datos, el cliente deja de emitir el evento data (si el servidor sigue enviendo data, node la almacena en un buffer)
+    // luego de 3 segundos se reanuda la recepción de datos
+    setTimeout(() => {
+        console.log('Reanudando recepción de datos');
+        client.resume();
+    }, 3000);
+});
+
+
+//ejercicio 4
 client.on('error', (err) => {
     console.error(`Error en la conexión: ${err.message}`);
+});
+
+client.on('close', () => {
+    console.log('Conexión cerrada inesperadamente');
 });
