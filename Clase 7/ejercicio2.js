@@ -22,7 +22,7 @@ const server = net.createServer((socket) => {
     });
 
     socket.on('data', (data) => {
-        console.log(`Datos recibidos: ${data}`);
+        console.log(`Datos recibidos: ${data.toString()}`);
         socket.setTimeout(10000);
     });
 });
