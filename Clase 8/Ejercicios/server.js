@@ -25,7 +25,7 @@ const server = net.createServer((socket) => {
 
     //Evento 'close': se emite cuando el socket se cierra de manera ordenada o abrupta
     socket.on('close', () => {
-        console-log("La conexión con el cliente se ha cerrado.")
+        console.log("La conexión con el cliente se ha cerrado.")
     });
 
     //Evento 'timeout': se emite cuando se alcanza el tiempo de espera definido por 'setTimeout' sin recibir datos
