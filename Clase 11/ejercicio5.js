@@ -7,9 +7,9 @@ proporciona pistas (mayor o menor) hasta que adivine.
 
 const readlineSync = require('readline-sync');
 
-numeroRandom = Math.floor(Math.random() * 100);
+const numeroRandom = Math.floor(Math.random() * 100);
 
-numeroElegido = readlineSync.questionInt("A ver si adivinas! Elegi un numero entre el 0 y el 99... ");
+const numeroElegido = readlineSync.questionInt("A ver si adivinas! Elegi un numero entre el 0 y el 99... ");
 
 function verSiGana(numero, numeroRandom) {
     if (numero === numeroRandom) {
