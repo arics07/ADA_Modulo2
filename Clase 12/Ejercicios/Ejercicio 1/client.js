@@ -13,7 +13,8 @@ client.on('connect', () => {
     console.log("Conectado al servidor.");
 
     //Envía un mensaje al servidor al conectarse
-    client.write("C:\\Users\\Usuario\\Pictures\\escuela.png");
+    //client.write("C:\\Users\\Usuario\\Pictures\\escuela.png");
+    client.write("Hola servidor! Te voy a mandar rutas...");
 });
 
 //Evento 'data': manejo de datos recibidos desde el servidor

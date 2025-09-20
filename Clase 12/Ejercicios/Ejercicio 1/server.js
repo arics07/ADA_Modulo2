@@ -12,6 +12,7 @@ server.on('connection', (socket) => {
         console.log(`El ciente ${socket.remoteAddress}:${socket.remotePort} dice: ${data.toString()}`);
         const formattedData = data.toString().trim();
         if (formattedData === "0") {
+            socket.write("Mensaje recibido. Adios client!!");
             socket.end();
             return
         };
