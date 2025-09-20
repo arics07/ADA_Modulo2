@@ -17,8 +17,8 @@ server.on('connection', (socket) => {
             return
         };
         //socket.write("Mensaje recibido.");
-        const esRutaAbsoluta = path.isAbsolute(formattedData);
-        (esRutaAbsoluta) ? socket.write("La ruta recibida es una ruta absoluta") : socket.write("La ruta recibida NO es una ruta absoluta");
+        const rutaNormalizada = path.normalize(formattedData);
+        socket.write(`Ruta normalizada: ${rutaNormalizada}`);
     });
 
     socket.on('close', () => {
@@ -37,7 +37,7 @@ server.on('connection', (socket) => {
 
 
 //Iniciar el servidor
-const PORT = 8080;
+const PORT = 8081;
 
 server.listen(PORT, () => {
     console.log(`Servidor escuchado en el puerto ${server.address().port}`);

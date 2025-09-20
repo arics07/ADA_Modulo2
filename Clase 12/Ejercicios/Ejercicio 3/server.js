@@ -9,7 +9,6 @@ server.on('connection', (socket) => {
     console.log(`El ciente ${socket.remoteAddress}:${socket.remotePort} se ha conectado`);
 
     socket.on('data', (data) => {
-        //console.log(`El ciente ${socket.remoteAddress}:${socket.remotePort} dice: ${data.toString()}`);
         const formattedData = data.toString().trim();
         if (formattedData === "0") {
             socket.write("Mensaje recibido. Adios client!!");
@@ -17,8 +16,17 @@ server.on('connection', (socket) => {
             return
         };
         //socket.write("Mensaje recibido.");
-        const esRutaAbsoluta = path.isAbsolute(formattedData);
-        (esRutaAbsoluta) ? socket.write("La ruta recibida es una ruta absoluta") : socket.write("La ruta recibida NO es una ruta absoluta");
+        /*
+        Usa path.basename, path.dirname, y path.extname para obtener la base del nombre, 
+        el directorio y la extensión del archivo, respectivamente.
+        Envía la información al cliente en un formato legible
+        */
+        console.log("Enviando información...");
+        const base = path.basename(formattedData);
+        const directorio = path.dirname(formattedData);
+        const extension = path.extname(formattedData);
+        socket.write(`El nombre del archivo es ${base}, se extensión es ${extension} y está en el directorio ${directorio}`);
+        
     });
 
     socket.on('close', () => {
@@ -37,7 +45,7 @@ server.on('connection', (socket) => {
 
 
 //Iniciar el servidor
-const PORT = 8080;
+const PORT = 8082;
 
 server.listen(PORT, () => {
     console.log(`Servidor escuchado en el puerto ${server.address().port}`);
