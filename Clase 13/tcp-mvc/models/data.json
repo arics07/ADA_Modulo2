@@ -1,0 +1,5 @@
+[
+    {"id": 1, "marca": "Volskwagen", "modelo": "Gol", "anio": 2023},
+    {"id": 2, "marca": "Toyota", "modelo": "Corola", "anio": 2020},
+    {"id": 3, "marca": "Ford", "modelo": "Focus", "anio": 2018}
+]
