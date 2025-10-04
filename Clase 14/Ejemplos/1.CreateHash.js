@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const data = 'Este es un mensaje secreto, aunque todos saben que mi micho es el más hermosooo!';
 
 // Creamos el objeto hash usando el algoritmo 'sha256'
-const hash = crypto.createHash('sha256');
+const hash = crypto.createHash('sha256'); //'sha256' o 'sha512'
 
 // Actualizar el hash con los datos
 hash.update(data);

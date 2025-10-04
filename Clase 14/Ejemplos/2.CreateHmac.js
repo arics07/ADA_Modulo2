@@ -1,11 +1,11 @@
 // Importar el módulo 'crypto' de Node.js
 const crypto = require('crypto');
 
-// Datos a autenticar
+// Guardamos en una cte los datos que vamos a autenticar
 const data = 'Mensaje secreto';
 
-// Clave secreta para HMAC
-const secretKey = 'mi_clave_secreta';
+// Clave secreta para HMAC (Hash-based Message Authentication Code)
+const secretKey = 'mi_clave_secreta'; //suele ir en un .env
 
 // Crear un objeto HMAC usando el algoritmo 'sha256' y la clave secreta
 const hmac = crypto.createHmac('sha256', secretKey);
