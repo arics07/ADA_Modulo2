@@ -8,7 +8,7 @@ const lenguajes = ['javascript', 'python', 'java', 'cobol', 'c++'];
 const seleccion = readlineSync.keyInSelect(lenguajes, "Cuál es tu lenguaje de rogramación favorito? ");
 
 if (seleccion === -1) { 
-   // console.log("El lenguaje no se encuentra disponible...")
+    console.log("El lenguaje no se encuentra disponible...")
 } else {
     console.log(`${lenguajes[seleccion]} es el mejor!!`);
 };
